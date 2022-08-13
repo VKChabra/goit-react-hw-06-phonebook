@@ -1,18 +1,18 @@
+import { useEffect } from 'react';
 import ContactsItem from 'components/Contacts/ContactsItem';
+import { LS_SAVEDCONTACTS } from 'redux/contacts';
 import styles from './contacts.module.css';
 import PropTypes from 'prop-types';
 
-const Contacts = ({ contacts, deleteContact }) => {
+const Contacts = ({ contacts }) => {
+  useEffect(() => {
+    window.localStorage.setItem(LS_SAVEDCONTACTS, JSON.stringify(contacts));
+  }, [contacts]);
+
   return (
     <div className={styles.contactsList}>
       {contacts.map(({ id, name, number }) => (
-        <ContactsItem
-          key={id}
-          id={id}
-          name={name}
-          number={number}
-          deleteContact={deleteContact}
-        />
+        <ContactsItem key={id} id={id} name={name} number={number} />
       ))}
     </div>
   );
@@ -26,7 +26,6 @@ Contacts.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ),
-  deleteContact: PropTypes.func.isRequired,
 };
 
 export default Contacts;
