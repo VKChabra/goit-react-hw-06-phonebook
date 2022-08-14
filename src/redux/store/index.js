@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import contacts from 'redux/contacts';
+import { setLocalStorage } from 'redux/localStorage';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     contacts,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(setLocalStorage),
 });
 
 export default store;

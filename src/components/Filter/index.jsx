@@ -1,10 +1,10 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/contacts';
-import PropTypes from 'prop-types';
 import styles from './filter.module.css';
 
-const Filter = ({ value }) => {
+const Filter = () => {
   const dispatch = useDispatch();
+  const filterValue = useSelector(state => state.contacts.filter);
   const onChangeFilter = e => {
     dispatch(setFilter(e.target.value));
   };
@@ -12,13 +12,9 @@ const Filter = ({ value }) => {
   return (
     <label className={styles.filterLabel}>
       Find contacts by name
-      <input type="text" value={value} onChange={onChangeFilter} />
+      <input type="text" value={filterValue} onChange={onChangeFilter} />
     </label>
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
 };
 
 export default Filter;
