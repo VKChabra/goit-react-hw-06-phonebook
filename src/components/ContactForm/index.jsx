@@ -5,7 +5,7 @@ import { addContact } from 'redux/contacts';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(state => state.perstistedContacts.items);
 
   const submitAddContact = e => {
     e.preventDefault();

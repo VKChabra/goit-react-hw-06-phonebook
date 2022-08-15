@@ -4,7 +4,7 @@ import styles from './filter.module.css';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filterValue = useSelector(state => state.contacts.filter);
+  const filterValue = useSelector(state => state.perstistedContacts.filter);
   const onChangeFilter = e => {
     dispatch(setFilter(e.target.value));
   };
