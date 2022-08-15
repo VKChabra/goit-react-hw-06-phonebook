@@ -15,8 +15,8 @@ const ContactForm = () => {
     form.reset();
 
     const normalizedName = name.toLowerCase();
-    const existingName = contacts.find(contact =>
-      contact.name.toLowerCase().includes(normalizedName)
+    const existingName = contacts.find(
+      contact => contact.name.toLowerCase() === normalizedName
     );
 
     if (existingName) {
