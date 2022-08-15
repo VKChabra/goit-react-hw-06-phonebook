@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loadLS, setLS } from 'utils/localStorage';
-import { useSelector } from 'react-redux';
 
 const CONTACTS_SLICE_NAME = 'contacts';
 const ADD_CONTACT = 'addContact';
@@ -49,14 +48,3 @@ const contactsSlice = createSlice({
 
 export const { addContact, deleteContact, setFilter } = contactsSlice.actions;
 export default contactsSlice.reducer;
-
-export const useFilteredContacts = () => {
-  const contactsSelector = useSelector(state => state.contacts.items);
-  const filterValueSelector = useSelector(state => state.contacts.filter);
-
-  const normalizedFilter = filterValueSelector.trim().toLowerCase();
-  const filteredContacts = contactsSelector.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
-  return filteredContacts;
-};

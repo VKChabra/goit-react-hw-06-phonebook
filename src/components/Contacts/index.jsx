@@ -1,5 +1,5 @@
 import ContactsItem from 'components/Contacts/ContactsItem';
-import { useFilteredContacts } from 'redux/contacts';
+import useFilteredContacts from 'hooks/filteredContacts';
 import styles from './contacts.module.css';
 
 const Contacts = () => {
