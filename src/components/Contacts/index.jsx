@@ -1,9 +1,18 @@
 import ContactsItem from 'components/Contacts/ContactsItem';
-import useFilteredContacts from 'hooks/filteredContacts';
+import { useSelector } from 'react-redux';
 import styles from './contacts.module.css';
 
 const Contacts = () => {
-  const filteredContacts = useFilteredContacts();
+  const contactsSelector = useSelector(state => state.perstistedContacts.items);
+  const filterValueSelector = useSelector(
+    state => state.perstistedContacts.filter
+  );
+
+  const normalizedFilter = filterValueSelector.trim().toLowerCase();
+  const filteredContacts = contactsSelector.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
+
   return (
     <div className={styles.contactsList}>
       {filteredContacts.map(({ id, name, number }) => (
